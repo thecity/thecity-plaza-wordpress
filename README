@@ -1,0 +1,24 @@
+=== Plugin Name ===
+Contributors: weshays@gbdev.com
+Tags: city, feeds, zondervan, acs, acs technologies, onthecity, plaza
+
+This widget allows you to pull your OnTheCity.org plaza information into your WordPress website.  
+
+== Description ==
+
+
+
+== Installation ==
+
+1. Unzip the file you downloaded
+2. Upload the 'onthecity-wordpress' folder to the '/wp-content/plugins/' directory
+3. Log into your Wordpress admin and activate the plugin through the 'Plugins' menu
+4. In the widgets screen drag the widget to the content section you want it to show up in
+5. .....
+
+
+
+== Screenshots ==
+
+Yeah... I am working on it :-)
+
