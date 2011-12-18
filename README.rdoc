@@ -30,12 +30,15 @@ Yeah... I am working on it :-)
 This project uses the API wrapper
 https://github.com/weshays/onthecity-api-php
 
-If you want to help out fork the project and send me a pull request.
-
 
 == TheCity API docs
 
 http://thecity.zendesk.com/entries/359458-using-the-plaza-json-api
+
+
+== Contributing
+
+If you want to help out fork the project and send me a pull request.  You can also send me feature requests.
 
 
 == License
