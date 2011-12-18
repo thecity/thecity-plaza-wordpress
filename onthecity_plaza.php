@@ -19,10 +19,13 @@ class OnTheCity_Plaza_Widget extends WP_Widget {
   
 
   function form($instance) {
-    $instance = wp_parse_args( (array) $instance, array( 'subdomain_key' => '', 'display_rate' => '' ) );
+    /* Set up some default widget settings. */
+		$defaults = array( 'subdomain_key' => '', 'plaza_display' => 'prayers', 'cache_duration' => '86400');
+		$instance = wp_parse_args( (array) $instance, $defaults );    
     $title = strip_tags($instance['title']);
     $subdomain_key = strip_tags($instance['subdomain_key']);
-    $display_rate = strip_tags($instance['display_rate']);
+    $plaza_display = strip_tags($instance['plaza_display']);
+    $cache_duration = strip_tags($instance['cache_duration']);
     ?>
 
     <p>
@@ -35,10 +38,11 @@ class OnTheCity_Plaza_Widget extends WP_Widget {
                value="<?php echo attribute_escape($title); ?>" />
        </label>
        <i>The title to display at the top of the widget</i>
-     </p>
+    </p>
+
 
    <p>
-     <label for="<?php echo $this->get_field_id('title'); ?>">
+     <label for="<?php echo $this->get_field_id('subdomain_key'); ?>">
        Subdomain: 
        <input class="widefat" 
               id="<?php echo $this->get_field_id('subdomain_key'); ?>" 
@@ -48,17 +52,74 @@ class OnTheCity_Plaza_Widget extends WP_Widget {
       </label>
       <i>Ex: http://[subdomain].MyChurch.org</i>
     </p>
+
+  
+    <p>
+      <?php 
+        $topics_s = $events_s = $prayers_s = $needs_s = $album_s = '';
+        switch($instance['plaza_display']) {
+          case 'topics':
+            $topics_s = 'selected="selected"'; 
+            break;
+          case 'events':
+            $events_s = 'selected="selected"'; 
+            break;
+          case 'prayers':
+            $prayers_s = 'selected="selected"';
+            break;
+          case 'needs':
+            $needs_s = 'selected="selected"'; 
+            break;
+          case 'albums':
+            $album_s = 'selected="selected"';
+            break;
+        }
+      ?> 
+    
+      <label for="<?php echo $this->get_field_id('plaza_display'); ?>">
+        Display:        			
+        <select class="widefat" 
+                id="<?php echo $this->get_field_id('plaza_display'); ?>" 
+                name="<?php echo $this->get_field_name('plaza_display'); ?>">
+        		<option value="topics" <?php echo $topics_s; ?> >Topics</option>
+        		<option value="events" <?php echo $events_s; ?> >Events</option>
+        		<option value="prayers" <?php echo $prayers_s; ?> >Prayers</option>
+        		<option value="needs" <?php echo $needs_s; ?> >Needs</option>
+        		<option value="albums" <?php echo $album_s; ?> >Albums</option>
+        </select>
+      </label>
+    </p>
+    
     
     <p>
-      <label for="<?php echo $this->get_field_id('width'); ?>">
-        Display Rate (in seconds): 
-        <input class="widefat" 
-               id="<?php echo $this->get_field_id('display_rate'); ?>" 
-               name="<?php echo $this->get_field_name('display_rate'); ?>" 
-               type="text" 
-               value="<?php echo attribute_escape($display_rate); ?>" />
+      <?php 
+        $one_hour = $one_day = $one_week = $one_month = '';
+        switch($instance['cache_duration']) {
+          case '3600': // One Hour
+            $one_hour = 'selected="selected"'; 
+            break;
+          case '86400': // One Day
+            $one_day = 'selected="selected"'; 
+            break;
+          case '604800': // One Week
+            $one_week = 'selected="selected"';
+            break;
+          case '2592000': // One Month (30 days)
+            $one_month = 'selected="selected"'; 
+        }
+      ?> 
+    
+      <label for="<?php echo $this->get_field_id('cache_duration'); ?>">
+        Cache data for:        			
+        <select class="widefat" 
+                id="<?php echo $this->get_field_id('cache_duration'); ?>" 
+                name="<?php echo $this->get_field_name('cache_duration'); ?>">
+        		<option value="3600" <?php echo $one_hour; ?> >One Hour</option>
+        		<option value="86400" <?php echo $one_day; ?> >One Day</option>
+        		<option value="604800" <?php echo $one_week; ?> >One Week</option>
+        		<option value="2592000" <?php echo $one_month; ?> >One Month (30 days)</option>
+        </select>
       </label>
-      <i>Number of seconds to show the next item</i>
     </p>
     <?php
   }
@@ -69,9 +130,11 @@ class OnTheCity_Plaza_Widget extends WP_Widget {
     $instance = $old_instance;
     $instance['title'] = strip_tags($new_instance['title']);
     $instance['subdomain_key'] = strip_tags($new_instance['subdomain_key']);
-    $instance['display_rate'] = strip_tags($new_instance['display_rate']);
+    $instance['plaza_display'] = strip_tags($new_instance['plaza_display']);
+    $instance['cache_duration'] = strip_tags($new_instance['cache_duration']);
     return $instance;
   }
+  
 
 
   function widget($args, $instance) {
@@ -79,7 +142,8 @@ class OnTheCity_Plaza_Widget extends WP_Widget {
 
     $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
     $subdomain_key = empty($instance['subdomain_key']) ? ' ' : $instance['subdomain_key'];
-    $display_rate = empty($instance['display_rate']) ? ' ' : $instance['display_rate'];
+    $plaza_display = empty($instance['plaza_display']) ? ' ' : $instance['plaza_display'];
+    $cache_duration = empty($instance['cache_duration']) ? ' ' : $instance['cache_duration'];
 
 
     echo $before_widget;

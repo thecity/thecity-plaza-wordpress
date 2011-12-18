@@ -1,0 +1,4 @@
+[18-Dec-2011 10:38:07] PHP Notice:  Undefined variable: topics in /Users/weshays/Git/onthecity-wordpress/load_data.php on line 34
+[18-Dec-2011 10:38:07] PHP Fatal error:  Call to a member function all_titles() on a non-object in /Users/weshays/Git/onthecity-wordpress/load_data.php on line 34
+[18-Dec-2011 10:57:29] PHP Fatal error:  Call to undefined method OnTheCity::payers() in /Users/weshays/Git/onthecity-wordpress/load_data.php on line 21
+[18-Dec-2011 10:59:52] PHP Fatal error:  Call to undefined method OnTheCity::albums() in /Users/weshays/Git/onthecity-wordpress/load_data.php on line 27

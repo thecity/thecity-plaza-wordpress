@@ -8,10 +8,30 @@
     
   } else {
     $on_the_city = new OnTheCity( $_GET['subdomain_key'] );  
-    $topics = $on_the_city->topics(); 
+    
+    $plaza_display = '';
+    switch($_GET['plaza_display']) {
+      case 'topics':
+        $plaza_display = $on_the_city->topics(); 
+        break;
+      case 'events':
+        $plaza_display = $on_the_city->events(); 
+        break;
+      case 'prayers':
+        $plaza_display = $on_the_city->prayers(); 
+        break;
+      case 'needs':
+        $plaza_display = $on_the_city->needs(); 
+        break;
+      case 'albums':
+        $plaza_display = $on_the_city->albums(); 
+        break;
+      default:
+        $plaza_display = $on_the_city->topics(); 
+    }
   
     $html = array();
-    foreach( $topics->all_titles() as $title) {
+    foreach( $plaza_display->all_titles() as $title) {
       $html[] = "<div>$title</div>";
     }
   
