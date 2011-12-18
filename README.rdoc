@@ -1,14 +1,17 @@
-=== Plugin Name ===
-Contributors: weshays@gbdev.com
-Tags: city, feeds, zondervan, acs, acs technologies, onthecity, plaza
+= OnTheCity WordPress Plugin
 
-This widget allows you to pull your OnTheCity.org plaza information into your WordPress website.  
+It is possible to pull church needs, topics, events, prayers and albums from the Plaza so that you can use them within your WordPress site.
 
-== Description ==
+Data pulled from TheCity is by default cached for 1 day (24 hours) so that subsequent requests are faster. 
 
 
+== Requirements
+PHP >= 5.3
 
-== Installation ==
+iconv: http://php.net/manual/en/book.iconv.php
+
+
+== Installation
 
 1. Unzip the file you downloaded
 2. Upload the 'onthecity-wordpress' folder to the '/wp-content/plugins/' directory
@@ -18,7 +21,24 @@ This widget allows you to pull your OnTheCity.org plaza information into your Wo
 
 
 
-== Screenshots ==
+== Screenshots
 
 Yeah... I am working on it :-)
 
+
+== OnTheCity PHP Library
+This project uses the API wrapper
+https://github.com/weshays/onthecity-api-php
+
+If you want to help out fork the project and send me a pull request.
+
+
+== TheCity API docs
+
+http://thecity.zendesk.com/entries/359458-using-the-plaza-json-api
+
+
+== License
+
+This plugin is released under the MIT license. Please contact weshays
+(http://github.com/weshays) for any questions.
