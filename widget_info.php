@@ -1,4 +1,4 @@
-<div id="onthecity-plaza-content">
+<div class="tc_wp_content">
   <?php 
     $otc_params = array();
     $otc_params[] = "subdomain_key=$subdomain_key";

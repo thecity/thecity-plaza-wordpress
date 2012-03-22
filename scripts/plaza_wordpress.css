@@ -1,10 +1,22 @@
-.tc_wp_header {
-  font-size: 12px;
-  color: #333333;
+.the_city_plaza_widget {
+  
 }
 
-.tc_wp_item {
+.the_city_plaza_widget .widget-title {
+  font-size: 14px;
+  font-weight: bold;
+  border-bottom: 1px solid #333333;
+  height: 30px;
+}
+
+
+.the_city_plaza_widget .tc_wp_content .tc_wp_item {
   font-size: 12px;
   margin-bottom: 5px;
-  border: 1px solid #ff0000;
+}
+
+
+.the_city_plaza_widget .tc_wp_content .tc_wp_item .tc_wp_link {
+  font-size: 12px;
+  margin-bottom: 5px;
 }
