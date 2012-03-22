@@ -14,7 +14,7 @@ include_once 'plaza_scripts.php';
 class The_City_Plaza_Widget extends WP_Widget {
   
   function __construct() {
-    $widget_ops = array('classname' => 'widget_onthecity_plaza', 
+    $widget_ops = array('classname' => 'The_City_Plaza_Widget', 
                         'description' => 'Pulls information from your church\'s OnTheCity.org Plaza page.' );
     $this->WP_Widget('the-city-plaza-widget', 'The City Plaza', $widget_ops);
   }
