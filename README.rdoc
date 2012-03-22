@@ -1,8 +1,8 @@
-= OnTheCity WordPress Plugin
+= The City Plaza WordPress Plugin
 
 It is possible to pull church needs, topics, events, prayers and albums from the Plaza so that you can use them within your WordPress site.
 
-Data pulled from TheCity is by default cached for 1 day (24 hours) so that subsequent requests are faster. 
+Data pulled from The City is by default cached for 1 day (24 hours) so that subsequent requests are faster. 
 
 
 == Requirements
@@ -14,7 +14,7 @@ iconv: http://php.net/manual/en/book.iconv.php
 == Installation
 
 1. Unzip the file you downloaded
-2. Upload the 'onthecity-wordpress' folder to the '/wp-content/plugins/' directory
+2. Upload the 'plaza-wordpress' folder to the '/wp-content/plugins/' directory
 3. Log into your Wordpress admin and activate the plugin through the 'Plugins' menu
 4. In the widgets screen drag the widget to the content section you want it to show up in
 5. .....
@@ -26,8 +26,8 @@ iconv: http://php.net/manual/en/book.iconv.php
 Yeah... I am working on it :-)
 
 
-== OnTheCity PHP Library
-This project uses the API wrapper
+== The City PHP Library
+This project uses the Plaza API wrapper
 https://github.com/weshays/onthecity-api-php
 
 
@@ -38,7 +38,10 @@ http://thecity.zendesk.com/entries/359458-using-the-plaza-json-api
 
 == Contributing
 
-If you want to help out fork the project and send me a pull request.  You can also send me feature requests.
+If you want to help out fork the project and send me a pull request.  
+
+You can also send me feature requests by creating a ticket
+(https://github.com/thecity/plaza-wordpress/issues)
 
 
 == License
