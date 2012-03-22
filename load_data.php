@@ -37,11 +37,16 @@
     $plaza_link_base = 'http://'.$_GET['subdomain_key'].'.onthecity.org/plaza/'.$plaza_choice.'/';
     $html = array();
 
-    foreach($plaza_display->all_titles() as $indx => $title) {  
-      $plaza_link = $plaza_link_base . $plaza_display->select($indx)->id();
-      $html[] = "<div class='tc_wp_item'><a class='tc_wp_link' href='$plaza_link' target='_blank'>$title</a></div>";
+    $plaza_titles = $plaza_display->all_titles();
+    if( empty($plaza_titles) ) {
+      $html[] = "No $plaza_choice found";      
+    } else {
+      foreach($plaza_titles as $indx => $title) {  
+        $plaza_link = $plaza_link_base . $plaza_display->select($indx)->id();
+        $html[] = "<div class='tc_wp_item'><a class='tc_wp_link' href='$plaza_link' target='_blank'>$title</a></div>";
+      }
     }
-  
+
     echo implode($html, '');
   }
 
