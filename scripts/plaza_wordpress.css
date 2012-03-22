@@ -1,0 +1,10 @@
+.tc_wp_header {
+  font-size: 12px;
+  color: #333333;
+}
+
+.tc_wp_item {
+  font-size: 12px;
+  margin-bottom: 5px;
+  border: 1px solid #ff0000;
+}

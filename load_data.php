@@ -1,13 +1,13 @@
 <?php
 
-  require_once 'lib/lib/on_the_city.php';
+  require_once 'lib/plaza-php/lib/the_city.php';
   
   if( empty( $_GET['subdomain_key'] ) ) {
     echo 'Subdomain not set';
     
     
   } else {
-    $on_the_city = new OnTheCity( $_GET['subdomain_key'] );  
+    $on_the_city = new TheCity( $_GET['subdomain_key'] );  
     
     $plaza_display = '';
     switch($_GET['plaza_display']) {
@@ -32,7 +32,7 @@
   
     $html = array();
     foreach( $plaza_display->all_titles() as $title) {
-      $html[] = "<div>$title</div>";
+      $html[] = "<div class='tc_wp_item'>$title</div>";
     }
   
     echo implode($html, '');

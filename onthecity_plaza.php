@@ -1,20 +1,22 @@
 <?php
 /*
-Plugin Name: OnTheCity Plaza Widget
-Plugin URI: https://github.com/weshays/onthecity-wordpress
+Plugin Name: The City Plaza Widget
+Plugin URI: http://thecity.github.com
 Description: This widget allows you to pull your OnTheCity.org plaza information into your WordPress website.
 Author: Wes Hays
 Version: 0.1
-Author URI: http://www.WesHays.com
+Author URI: http://www.OnTheCity.com
 */
 
+include_once 'plaza_scripts.php';
 
-class OnTheCity_Plaza_Widget extends WP_Widget {
+
+class The_City_Plaza_Widget extends WP_Widget {
   
   function __construct() {
     $widget_ops = array('classname' => 'widget_onthecity_plaza', 
                         'description' => 'Pulls information from your church\'s OnTheCity.org Plaza page.' );
-    $this->WP_Widget('onthecity-plaza-widget', 'OnTheCity Plaza', $widget_ops);
+    $this->WP_Widget('the-city-plaza-widget', 'The City Plaza', $widget_ops);
   }
   
 
@@ -158,8 +160,6 @@ class OnTheCity_Plaza_Widget extends WP_Widget {
   
 }
 
-add_action('widgets_init', create_function('', 'return register_widget("OnTheCity_Plaza_Widget");'));
-
-
+add_action('widgets_init', create_function('', 'return register_widget("The_City_Plaza_Widget");'));
 
 ?>
