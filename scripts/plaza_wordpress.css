@@ -18,5 +18,11 @@
 
 .the_city_plaza_widget .tc_wp_content .tc_wp_item .tc_wp_link {
   font-size: 12px;
-  margin-bottom: 5px;
 }
+
+.the_city_plaza_widget .tc_wp_content .tc_wp_item .tc_wp_date {
+  font-size: 10px;
+  font-style: italic;
+  color: #666666;
+}
+

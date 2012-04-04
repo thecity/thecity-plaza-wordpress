@@ -4,7 +4,7 @@ Plugin Name: The City Plaza Widget
 Plugin URI: http://thecity.github.com
 Description: This widget allows you to pull your OnTheCity.org plaza information into your WordPress website.
 Author: Wes Hays
-Version: 0.1
+Version: 0.2
 Author URI: http://www.OnTheCity.com
 */
 
@@ -22,11 +22,17 @@ class The_City_Plaza_Widget extends WP_Widget {
 
   function form($instance) {
     /* Set up some default widget settings. */
-		$defaults = array( 'subdomain_key' => '', 'plaza_display' => 'prayers', 'cache_duration' => '86400');
+		$defaults = array( 'subdomain_key' => '', 
+                       'plaza_display' => 'prayers', 
+                       'show_dates' => '0', 
+                       'cache_duration' => '86400');
+
 		$instance = wp_parse_args( (array) $instance, $defaults );    
+
     $title = strip_tags($instance['title']);
     $subdomain_key = strip_tags($instance['subdomain_key']);
     $plaza_display = strip_tags($instance['plaza_display']);
+    $show_dates = strip_tags($instance['show_dates']);
     $cache_duration = strip_tags($instance['cache_duration']);
     ?>
 
@@ -90,6 +96,17 @@ class The_City_Plaza_Widget extends WP_Widget {
         		<option value="albums" <?php echo $album_s; ?> >Albums</option>
         </select>
       </label>
+
+
+      <?php
+        $show_dates_checked = empty($show_dates) ? '' : 'checked="checked"';
+      ?>
+      <label for="<?php echo $this->get_field_id('show_dates'); ?>">
+        <input type="checkbox" 
+               id="<?php echo $this->get_field_id('show_dates'); ?>" 
+               name="<?php echo $this->get_field_name('show_dates'); ?>"
+               <?php echo $show_dates_checked ?> /> Show Dates        
+      </label>
     </p>
     
     
@@ -133,6 +150,7 @@ class The_City_Plaza_Widget extends WP_Widget {
     $instance['title'] = strip_tags($new_instance['title']);
     $instance['subdomain_key'] = strip_tags($new_instance['subdomain_key']);
     $instance['plaza_display'] = strip_tags($new_instance['plaza_display']);
+    $instance['show_dates'] = strip_tags($new_instance['show_dates']);
     $instance['cache_duration'] = strip_tags($new_instance['cache_duration']);
     return $instance;
   }
@@ -145,8 +163,8 @@ class The_City_Plaza_Widget extends WP_Widget {
     $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
     $subdomain_key = empty($instance['subdomain_key']) ? ' ' : $instance['subdomain_key'];
     $plaza_display = empty($instance['plaza_display']) ? ' ' : $instance['plaza_display'];
+    $show_dates = empty($instance['show_dates']) ? ' ' : $instance['show_dates'];
     $cache_duration = empty($instance['cache_duration']) ? ' ' : $instance['cache_duration'];
-
 
     echo $before_widget;
     if (!empty( $title )) {
