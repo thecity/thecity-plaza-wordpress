@@ -58,7 +58,7 @@ class The_City_Plaza_Widget extends WP_Widget {
               type="text" 
               value="<?php echo attribute_escape($subdomain_key); ?>" />
       </label>
-      <i>Ex: http://[subdomain].MyChurch.org</i>
+      <i>Ex: https://[subdomain].OnTheCity.org</i>
     </p>
 
   
