@@ -57,7 +57,7 @@
         }        
 
         $item_display_date = empty($item_date) ? '' : '<div class="tc_wp_date">' . $item_date . '</div>';
-        $html[] = "<div class='tc_wp_item'><a class='tc_wp_link' href='$plaza_link' target='_blank'>$title</a>$item_display_date</div>";
+        $html[] = "<li class='tc_wp_item'>$item_display_date<a class='tc_wp_link' href='$plaza_link' target='_blank'>$title</a></li>";
       }
     }
 
