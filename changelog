@@ -1,3 +1,9 @@
+0.3
+* Changed example link under subdomain field to reference OnTheCity.org.
+* Moved dates to show before the link.
+* Updated styling.
+* Using a list instead of div tags.
+
 0.2
 * Added date to list if available.
 * Updated CSS to style the date.
