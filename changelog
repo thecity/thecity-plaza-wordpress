@@ -3,6 +3,7 @@
 * Moved dates to show before the link.
 * Updated styling.
 * Using a list instead of div tags.
+* Events now show the data of the event rather then the date the event was created.
 
 0.2
 * Added date to list if available.
