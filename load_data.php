@@ -49,7 +49,7 @@
         $item_date = '';
 
         if(!empty($show_dates)) {
-          $item_created_at = $item->created_at();
+          $item_created_at = $_GET['plaza_display'] == 'events' ? $item->starting_at() : $item->created_at();
           if( !empty($item_created_at) ) {
             $item_created_at = date_parse($item_created_at);
             $item_date = implode( array($item_created_at['month'], $item_created_at['day'], $item_created_at['year']), '-');
