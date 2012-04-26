@@ -24,6 +24,7 @@ class The_City_Plaza_Widget extends WP_Widget {
     /* Set up some default widget settings. */
 		$defaults = array( 'subdomain_key' => '', 
                        'plaza_display' => 'prayers', 
+                       'items_to_display' => '10',
                        'show_dates' => '0', 
                        'cache_duration' => '86400');
 
@@ -32,6 +33,7 @@ class The_City_Plaza_Widget extends WP_Widget {
     $title = strip_tags($instance['title']);
     $subdomain_key = strip_tags($instance['subdomain_key']);
     $plaza_display = strip_tags($instance['plaza_display']);
+    $items_to_display = strip_tags($instance['items_to_display']);
     $show_dates = strip_tags($instance['show_dates']);
     $cache_duration = strip_tags($instance['cache_duration']);
     ?>
@@ -109,6 +111,25 @@ class The_City_Plaza_Widget extends WP_Widget {
       </label>
     </p>
     
+
+    <p>
+      <label for="<?php echo $this->get_field_id('items_to_display'); ?>">
+        Items to display:              
+        <select class="widefat" 
+                id="<?php echo $this->get_field_id('items_to_display'); ?>" 
+                name="<?php echo $this->get_field_name('items_to_display'); ?>">
+
+            <?php 
+              $item_count_selected = '';
+              for($i=1; $i<=15; $i++) {
+                $item_count_selected = $items_to_display == $i ? 'selected="selected"' : '';
+                echo "<option value=\"$i\" $item_count_selected>$i</option>";                
+              }
+            ?>
+        </select>
+      </label>      
+    </p>
+
     
     <p>
       <?php 
@@ -150,6 +171,7 @@ class The_City_Plaza_Widget extends WP_Widget {
     $instance['title'] = strip_tags($new_instance['title']);
     $instance['subdomain_key'] = strip_tags($new_instance['subdomain_key']);
     $instance['plaza_display'] = strip_tags($new_instance['plaza_display']);
+    $instance['items_to_display'] = strip_tags($new_instance['items_to_display']);
     $instance['show_dates'] = strip_tags($new_instance['show_dates']);
     $instance['cache_duration'] = strip_tags($new_instance['cache_duration']);
     return $instance;
@@ -163,6 +185,7 @@ class The_City_Plaza_Widget extends WP_Widget {
     $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
     $subdomain_key = empty($instance['subdomain_key']) ? ' ' : $instance['subdomain_key'];
     $plaza_display = empty($instance['plaza_display']) ? ' ' : $instance['plaza_display'];
+    $items_to_display = empty($instance['items_to_display']) ? '10' : $instance['items_to_display'];
     $show_dates = empty($instance['show_dates']) ? ' ' : $instance['show_dates'];
     $cache_duration = empty($instance['cache_duration']) ? ' ' : $instance['cache_duration'];
 

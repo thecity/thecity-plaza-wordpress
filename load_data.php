@@ -7,13 +7,15 @@
     
     
   } else {
-
     $the_city = new TheCity( $_GET['subdomain_key'] );  
     $subdomain_key = $_GET['subdomain_key'];
     $plaza_choice = $_GET['plaza_display'];    
+    $items_to_display = $_GET['items_to_display'];    
     $show_dates = $_GET['show_dates'];  
     $plaza_choice_key = '';
     $plaza_display = '';
+
+    $the_city->per_page = $items_to_display;
 
     switch($_GET['plaza_display']) {
       case 'topics':
@@ -38,6 +40,7 @@
     
     $plaza_link_base = 'http://'.$_GET['subdomain_key'].'.onthecity.org/plaza/'.$plaza_choice.'/';
     $html = array();
+
 
     $plaza_titles = $plaza_display->all_titles();
     if( empty($plaza_titles) ) {

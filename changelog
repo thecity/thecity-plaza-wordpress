@@ -1,3 +1,6 @@
+0.4
+* Added option for number of items to display.  Up 15 items.
+
 0.3
 * Changed example link under subdomain field to reference OnTheCity.org.
 * Moved dates to show before the link.
