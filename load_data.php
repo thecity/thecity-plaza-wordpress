@@ -15,27 +15,25 @@
     $plaza_choice_key = '';
     $plaza_display = '';
 
-    $the_city->per_page = $items_to_display;
-
     switch($_GET['plaza_display']) {
       case 'topics':
-        $plaza_display = $the_city->topics(); 
+        $plaza_display = $the_city->topics($items_to_display); 
         break;
       case 'events':
-        $plaza_display = $the_city->events(); 
+        $plaza_display = $the_city->events($items_to_display); 
         break;
       case 'prayers':
-        $plaza_display = $the_city->prayers(); 
+        $plaza_display = $the_city->prayers($items_to_display); 
         break;
       case 'needs':
-        $plaza_display = $the_city->needs(); 
+        $plaza_display = $the_city->needs($items_to_display); 
         break;
       case 'albums':
-        $plaza_display = $the_city->albums(); 
+        $plaza_display = $the_city->albums($items_to_display); 
         break;
       default:
         $plaza_choice = 'topics';
-        $plaza_display = $the_city->topics(); 
+        $plaza_display = $the_city->topics($items_to_display); 
     }
     
     $plaza_link_base = 'http://'.$_GET['subdomain_key'].'.onthecity.org/plaza/'.$plaza_choice.'/';
