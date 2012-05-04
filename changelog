@@ -1,5 +1,6 @@
 0.5
-* Added option to show all plaza items in the same list, which will show a mixture of items depending on the date created (or date of if item is an event).  The total number of items in the list will be limited to the number selected.
+* Added option to show all plaza items in the same list, which will show a mixture of items depending on the date created (or date "of" if item is an event).  The total number of items in the list will be limited to the number selected.
+* Added option to display Plaza item type above title.  If date is also displayed the Plaza item type will show to the right of the date.  This was really meant to be used with the "Show All" option.
 
 0.4
 * Added option for number of items to display.  Up 15 items.
