@@ -68,6 +68,9 @@ class The_City_Plaza_Widget extends WP_Widget {
       <?php 
         $topics_s = $events_s = $prayers_s = $needs_s = $album_s = '';
         switch($instance['plaza_display']) {
+          case 'all':
+            $all_s = 'selected="selected"'; 
+            break;
           case 'topics':
             $topics_s = 'selected="selected"'; 
             break;
@@ -91,6 +94,7 @@ class The_City_Plaza_Widget extends WP_Widget {
         <select class="widefat" 
                 id="<?php echo $this->get_field_id('plaza_display'); ?>" 
                 name="<?php echo $this->get_field_name('plaza_display'); ?>">
+            <option value="all" <?php echo $all_s; ?> >Show All</option>
         		<option value="topics" <?php echo $topics_s; ?> >Topics</option>
         		<option value="events" <?php echo $events_s; ?> >Events</option>
         		<option value="prayers" <?php echo $prayers_s; ?> >Prayers</option>

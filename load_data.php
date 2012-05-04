@@ -1,6 +1,7 @@
 <?php
 
   require_once 'lib/plaza-php/lib/the_city.php';
+  require_once 'lib/plaza_collection.php';
   
   if( empty( $_GET['subdomain_key'] ) ) {
     echo 'Subdomain not set';
@@ -16,6 +17,9 @@
     $plaza_display = '';
 
     switch($_GET['plaza_display']) {
+      case 'all':
+        $plaza_display = new PlazaCollection($the_city, $items_to_display);
+        break;
       case 'topics':
         $plaza_display = $the_city->topics($items_to_display); 
         break;
@@ -40,7 +44,7 @@
     $html = array();
 
 
-    $plaza_titles = $plaza_display->all_titles();
+    $plaza_titles = $plaza_display->titles();
     if( empty($plaza_titles) ) {
       $html[] = "No $plaza_choice found";      
     } else {
