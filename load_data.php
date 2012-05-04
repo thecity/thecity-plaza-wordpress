@@ -8,12 +8,13 @@
     
     
   } else {
+
     $the_city = new TheCity( $_GET['subdomain_key'] );  
     $subdomain_key = $_GET['subdomain_key'];
     $plaza_choice = $_GET['plaza_display'];    
     $items_to_display = $_GET['items_to_display'];    
-    $show_dates = $_GET['show_dates'];  
-    $show_type = $_GET['show_type'];  
+    $show_dates = isset($_GET['show_dates']) ? $_GET['show_dates'] : '';  
+    $show_type = isset($_GET['show_type']) ? $_GET['show_type'] : '';   
     $plaza_choice_key = '';
     $plaza_display = '';
 

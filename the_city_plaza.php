@@ -26,7 +26,7 @@ class The_City_Plaza_Widget extends WP_Widget {
                        'plaza_display' => 'prayers', 
                        'items_to_display' => '10',
                        'show_dates' => '0', 
-                       'show_type' => '',
+                       'show_type' => '0',
                        'cache_duration' => '86400');
 
 		$instance = wp_parse_args( (array) $instance, $defaults );    
