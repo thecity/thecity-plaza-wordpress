@@ -26,6 +26,7 @@ class The_City_Plaza_Widget extends WP_Widget {
                        'plaza_display' => 'prayers', 
                        'items_to_display' => '10',
                        'show_dates' => '0', 
+                       'show_type' => '',
                        'cache_duration' => '86400');
 
 		$instance = wp_parse_args( (array) $instance, $defaults );    
@@ -35,6 +36,7 @@ class The_City_Plaza_Widget extends WP_Widget {
     $plaza_display = strip_tags($instance['plaza_display']);
     $items_to_display = strip_tags($instance['items_to_display']);
     $show_dates = strip_tags($instance['show_dates']);
+    $show_type = strip_tags($instance['show_type']);
     $cache_duration = strip_tags($instance['cache_duration']);
     ?>
 
@@ -113,6 +115,18 @@ class The_City_Plaza_Widget extends WP_Widget {
                name="<?php echo $this->get_field_name('show_dates'); ?>"
                <?php echo $show_dates_checked ?> /> Show Dates        
       </label>
+
+      <br>
+
+      <?php
+        $show_type_checked = empty($show_type) ? '' : 'checked="checked"';
+      ?>
+      <label for="<?php echo $this->get_field_id('show_type'); ?>">
+        <input type="checkbox" 
+               id="<?php echo $this->get_field_id('show_type'); ?>" 
+               name="<?php echo $this->get_field_name('show_type'); ?>"
+               <?php echo $show_type_checked ?> /> Show Plaza item type above title      
+      </label>      
     </p>
     
 
@@ -177,6 +191,7 @@ class The_City_Plaza_Widget extends WP_Widget {
     $instance['plaza_display'] = strip_tags($new_instance['plaza_display']);
     $instance['items_to_display'] = strip_tags($new_instance['items_to_display']);
     $instance['show_dates'] = strip_tags($new_instance['show_dates']);
+    $instance['show_type'] = strip_tags($new_instance['show_type']);
     $instance['cache_duration'] = strip_tags($new_instance['cache_duration']);
     return $instance;
   }
@@ -191,6 +206,7 @@ class The_City_Plaza_Widget extends WP_Widget {
     $plaza_display = empty($instance['plaza_display']) ? ' ' : $instance['plaza_display'];
     $items_to_display = empty($instance['items_to_display']) ? '10' : $instance['items_to_display'];
     $show_dates = empty($instance['show_dates']) ? ' ' : $instance['show_dates'];
+    $show_type = empty($instance['show_type']) ? ' ' : $instance['show_type'];
     $cache_duration = empty($instance['cache_duration']) ? ' ' : $instance['cache_duration'];
 
     echo $before_widget;

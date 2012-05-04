@@ -13,6 +13,7 @@
     $plaza_choice = $_GET['plaza_display'];    
     $items_to_display = $_GET['items_to_display'];    
     $show_dates = $_GET['show_dates'];  
+    $show_type = $_GET['show_type'];  
     $plaza_choice_key = '';
     $plaza_display = '';
 
@@ -54,12 +55,21 @@
         $item_date = '';
 
         if(!empty($show_dates)) {
-          $item_created_at = $_GET['plaza_display'] == 'events' ? $item->starting_at() : $item->created_at();
+          $item_created_at = get_class($item) == 'Event' ? $item->starting_at() : $item->created_at();
           if( !empty($item_created_at) ) {
             $item_created_at = date_parse($item_created_at);
             $item_date = implode( array($item_created_at['month'], $item_created_at['day'], $item_created_at['year']), '-');
           }
-        }        
+        }       
+
+        if(!empty($show_type)) {
+          $item_type = get_class($item);
+          if(empty($item_date)) {
+            $item_date = $item_type;
+          } else {
+            $item_date .= ' :: ' . $item_type;
+          }
+        }  
 
         $item_display_date = empty($item_date) ? '' : '<div class="tc_wp_date">' . $item_date . '</div>';
         $html[] = "<li class='tc_wp_item'>$item_display_date<a class='tc_wp_link' href='$plaza_link' target='_blank'>$title</a></li>";
