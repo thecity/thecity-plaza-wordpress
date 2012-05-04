@@ -41,7 +41,6 @@
         $plaza_display = $the_city->topics($items_to_display); 
     }
     
-    $plaza_link_base = 'http://'.$_GET['subdomain_key'].'.onthecity.org/plaza/'.$plaza_choice.'/';
     $html = array();
 
 
@@ -50,7 +49,16 @@
       $html[] = "No $plaza_choice found";      
     } else {
       foreach($plaza_titles as $indx => $title) {  
-        $item = $plaza_display->select($indx);     
+        $item = $plaza_display->select($indx);  
+
+        if($plaza_choice == 'all') {
+          $str = get_class($item);
+          $item_type_path  = strtolower($str) . 's';
+        } else {
+          $item_type_path = $plaza_choice;
+        }
+
+        $plaza_link_base = 'http://'.$_GET['subdomain_key'].'.onthecity.org/plaza/'.$item_type_path.'/'; 
         $plaza_link = $plaza_link_base . $item->id();   
         $item_date = '';
 
