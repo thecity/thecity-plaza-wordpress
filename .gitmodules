@@ -1,0 +1,3 @@
+[submodule "lib/plaza-php"]
+	path = lib/plaza-php
+	url = git://github.com/thecity/thecity-plaza-php.git

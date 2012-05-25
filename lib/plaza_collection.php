@@ -1,5 +1,17 @@
 <?php
 
+
+  /**
+   * Set the default Time Zone if not already set for the user.
+   * I don't think this will actually be used anywhere and is 
+   * really only for PHP 5.3.
+   */
+
+  if (!ini_get('date.timezone')) {
+    date_default_timezone_set('America/Los_Angeles');
+  }
+
+
   /** 
    * This class is a wrapper for the topics page.
    *
