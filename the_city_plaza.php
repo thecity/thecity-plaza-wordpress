@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: The City Plaza Widget
-Plugin URI: http://thecity.github.com
+Plugin URI: http://developer.onthecity.org/thecity-plugins/wordpress/
 Description: This widget allows you to pull your OnTheCity.org plaza information into your WordPress website.
 Author: Wes Hays
-Version: 0.5
+Version: 0.6
 Author URI: http://www.OnTheCity.org
 */
 
