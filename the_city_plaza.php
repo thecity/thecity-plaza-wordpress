@@ -38,6 +38,17 @@ class The_City_Plaza_Widget extends WP_Widget {
     $show_dates = strip_tags($instance['show_dates']);
     $show_type = strip_tags($instance['show_type']);
     $cache_duration = strip_tags($instance['cache_duration']);
+
+
+    $clear_cache_msg = '';
+    if (isset($_POST['clear_cache_now'])) {
+      if(clear_plaza_cache_directory()) {
+        $clear_cache_msg = 'Cache cleared';
+      } else {
+        $clear_cache_msg = 'Failed to clear cache';
+      }
+    }
+
     ?>
 
     <p>
@@ -178,6 +189,12 @@ class The_City_Plaza_Widget extends WP_Widget {
         		<option value="2592000" <?php echo $one_month; ?> >One Month (30 days)</option>
         </select>
       </label>
+
+      <label for="clear_cache_now">
+        <input type="checkbox" id="clear_cache_now" name="clear_cache_now" /> Clear cache on save       
+      </label>
+
+      <?php if(!empty($clear_cache_msg)) { echo '<div style="color:#990000">'.$clear_cache_msg.'</div>'; } ?>
     </p>
     <?php
   }

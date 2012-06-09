@@ -16,4 +16,39 @@ function plaza_wordpress_styles() {
 
 add_action('wp_enqueue_scripts', 'plaza_wordpress_styles');  
 
+
+function clear_plaza_cache_directory() {
+  $dir = plugin_dir_path(__FILE__) . 'lib/plaza-php/storage/'; // IMPORTANT: with '/' at the end
+  try {
+    delete_plaza_cache_directory($dir);
+    return true;
+  } catch(Exception $e) {
+    return false;
+  }
+}
+
+function delete_plaza_cache_directory($dir) {
+  // Assume cache has already been cleared.
+  if(!file_exists($dir)) { return true; }
+
+  if ($handle = opendir($dir)) {
+    $array = array();
+
+    while (false !== ($file = readdir($handle))) {
+      if ($file != "." && $file != "..") {
+
+        if(is_dir($dir.$file)) {
+          if(!@rmdir($dir.$file)) { // Empty directory? Remove it
+            delete_plaza_cache_directory($dir.$file.'/'); // Not empty? Delete the files inside it
+          }
+        } else {
+          @unlink($dir.$file);
+        }
+      }
+    }
+    closedir($handle);
+    @rmdir($dir);
+  }
+}
+
 ?>
