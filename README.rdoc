@@ -23,12 +23,16 @@ iconv: http://php.net/manual/en/book.iconv.php
 
 == Screenshots
 
-Yeah... I am working on it :-)
+Here is the link to the description of the plugin:
+http://developer.onthecity.org/thecity-plugins/wordpress/
+
 
 
 == The City PHP Library
+
 This project uses the Plaza API wrapper
-https://github.com/weshays/onthecity-api-php
+https://github.com/thecity/thecity-plaza-php
+
 
 
 == TheCity API docs
@@ -36,12 +40,13 @@ https://github.com/weshays/onthecity-api-php
 http://thecity.zendesk.com/entries/359458-using-the-plaza-json-api
 
 
+
 == Contributing
 
 If you want to help out fork the project and send me a pull request.  
 
 You can also send me feature requests by creating a ticket
-(https://github.com/thecity/plaza-wordpress/issues)
+(https://github.com/thecity/thecity-plaza-wordpress/issues)
 
 
 == License
