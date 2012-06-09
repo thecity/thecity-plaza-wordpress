@@ -13,6 +13,12 @@ iconv: http://php.net/manual/en/book.iconv.php
 
 == Installation
 
+Install from within WordPress:
+Plugins => Add New => search for "the city plaza".
+
+
+Install manually:
+
 1. Unzip the file you downloaded.
 2. Upload files to a 'the-city-plaza' folder in the '/wp-content/plugins/' directory.
 3. Log into your Wordpress admin and activate the plugin through the 'Plugins' menu.
