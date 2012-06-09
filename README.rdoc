@@ -14,7 +14,8 @@ iconv: http://php.net/manual/en/book.iconv.php
 == Installation
 
 Install from within WordPress:
-Plugins => Add New => search for "the city plaza".
+
+Go to Plugins => Add New => search for "the city plaza".
 
 
 Install manually:
