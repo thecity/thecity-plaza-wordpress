@@ -1,3 +1,6 @@
+0.6.1
+* Added checks for different ways of getting data from the plaza.  If allow_url_fopen is disabled then an attempt will be made to use cURL.  If both are not available then an error message will be displayed.
+
 0.6
 * Added checkbox to clear the cache when the widget is saved.
 
