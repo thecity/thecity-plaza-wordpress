@@ -9,8 +9,16 @@
     $otc_params[] = "items_to_display=$items_to_display";  
     $otc_params[] = "show_dates=$show_dates";  
     $otc_params[] = "show_type=$show_type";
+    $otc_params[] = "wp=1";
 
     $url = site_url() . '/wp-content/plugins/the-city-plaza/load_data.php?'.implode('&', $otc_params); 
-    echo file_get_contents($url);
+
+    if( ini_get('allow_url_fopen') ) { 
+      echo file_get_contents($url);
+    } else if( function_exists('curl_version') ) {
+      echo file_get_plaza_contents_with_curl($url);
+    } else {
+      echo 'Cannot pull data from plaza.  Either enable allow_url_fopen in the php.ini file, or install curl for php.';
+    }
   ?>
 </ul>
