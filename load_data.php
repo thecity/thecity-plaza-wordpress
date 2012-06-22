@@ -10,6 +10,9 @@
   } else {
 
     $the_city = new TheCity( $_GET['subdomain_key'] );  
+
+    if( isset($_GET['group_nickname']) ) { $the_city->set_group_nickname($_GET['group_nickname']); }
+
     $subdomain_key = $_GET['subdomain_key'];
     $plaza_choice = $_GET['plaza_display'];    
     $items_to_display = $_GET['items_to_display'];    
@@ -58,6 +61,7 @@
         } else {
           $item_type_path = $plaza_choice;
         }
+
 
         $plaza_link_base = 'http://'.$_GET['subdomain_key'].'.onthecity.org/plaza/'.$item_type_path.'/'; 
         $plaza_link = $plaza_link_base . $item->id();   

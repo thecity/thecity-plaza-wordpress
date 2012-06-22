@@ -5,6 +5,7 @@
 
     $otc_params = array();
     $otc_params[] = "subdomain_key=$subdomain_key";
+    if(!empty($group_nickname)) { $otc_params[] = "group_nickname=$group_nickname"; }
     $otc_params[] = "plaza_display=$plaza_display";
     $otc_params[] = "items_to_display=$items_to_display";  
     $otc_params[] = "show_dates=$show_dates";  

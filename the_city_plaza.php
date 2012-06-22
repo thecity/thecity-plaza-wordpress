@@ -4,7 +4,7 @@ Plugin Name: The City Plaza Widget
 Plugin URI: http://developer.onthecity.org/thecity-plugins/wordpress/
 Description: This widget allows you to pull your OnTheCity.org plaza information into your WordPress website.
 Author: Wes Hays
-Version: 0.6
+Version: 7.0
 Author URI: http://www.OnTheCity.org
 */
 
@@ -23,6 +23,7 @@ class The_City_Plaza_Widget extends WP_Widget {
   function form($instance) {
     /* Set up some default widget settings. */
 		$defaults = array( 'subdomain_key' => '', 
+                       'group_nickname' => '',
                        'plaza_display' => 'prayers', 
                        'items_to_display' => '10',
                        'show_dates' => '0', 
@@ -33,6 +34,7 @@ class The_City_Plaza_Widget extends WP_Widget {
 
     $title = strip_tags($instance['title']);
     $subdomain_key = strip_tags($instance['subdomain_key']);
+    $group_nickname = strip_tags($instance['group_nickname']);
     $plaza_display = strip_tags($instance['plaza_display']);
     $items_to_display = strip_tags($instance['items_to_display']);
     $show_dates = strip_tags($instance['show_dates']);
@@ -75,6 +77,19 @@ class The_City_Plaza_Widget extends WP_Widget {
       </label>
       <i>Ex: https://[subdomain].OnTheCity.org</i>
     </p>
+
+
+   <p>
+     <label for="<?php echo $this->get_field_id('group_nickname'); ?>">
+       Group Nickname (optional): 
+       <input class="widefat" 
+              id="<?php echo $this->get_field_id('group_nickname'); ?>" 
+              name="<?php echo $this->get_field_name('group_nickname'); ?>" 
+              type="text" 
+              value="<?php echo attribute_escape($group_nickname); ?>" />
+      </label>
+      <i>Only items for this group will be pulled.</i>
+    </p>    
 
   
     <p>
@@ -203,8 +218,15 @@ class The_City_Plaza_Widget extends WP_Widget {
 
   function update($new_instance, $old_instance) {
     $instance = $old_instance;
+
+    // This is done this way for older versions of PHP otherwise I would combine them all into one line.
+    $nickname = strip_tags($new_instance['group_nickname']);
+    $nickname = strtolower($nickname);
+    $nickname = trim($nickname);
+
     $instance['title'] = strip_tags($new_instance['title']);
     $instance['subdomain_key'] = strip_tags($new_instance['subdomain_key']);
+    $instance['group_nickname'] = $nickname;
     $instance['plaza_display'] = strip_tags($new_instance['plaza_display']);
     $instance['items_to_display'] = strip_tags($new_instance['items_to_display']);
     $instance['show_dates'] = strip_tags($new_instance['show_dates']);
@@ -220,6 +242,7 @@ class The_City_Plaza_Widget extends WP_Widget {
 
     $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
     $subdomain_key = empty($instance['subdomain_key']) ? ' ' : $instance['subdomain_key'];
+    $group_nickname = empty($instance['group_nickname']) ? '' : $instance['group_nickname'];
     $plaza_display = empty($instance['plaza_display']) ? ' ' : $instance['plaza_display'];
     $items_to_display = empty($instance['items_to_display']) ? '10' : $instance['items_to_display'];
     $show_dates = empty($instance['show_dates']) ? ' ' : $instance['show_dates'];
