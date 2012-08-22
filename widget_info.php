@@ -10,7 +10,6 @@
     $otc_params[] = "items_to_display=$items_to_display";  
     $otc_params[] = "show_dates=$show_dates";  
     $otc_params[] = "show_type=$show_type";
-    $otc_params[] = "wp=1";
 
     $url = site_url() . '/wp-content/plugins/the-city-plaza/load_data.php?'.implode('&', $otc_params); 
 

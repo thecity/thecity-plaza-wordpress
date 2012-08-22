@@ -13,6 +13,8 @@
 
     if( isset($_GET['group_nickname']) ) { $the_city->set_group_nickname($_GET['group_nickname']); }
 
+    if( isset($_GET['wp']) ) { $the_city->add_url_param('wp=1'); }
+
     $subdomain_key = $_GET['subdomain_key'];
     $plaza_choice = $_GET['plaza_display'];    
     $items_to_display = $_GET['items_to_display'];    
