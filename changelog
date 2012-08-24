@@ -1,3 +1,7 @@
+0.7.1
+* Fixed how cache key was generated.
+* Updated how the URL was generated for pulling plaza data.
+
 0.7.0
 * Added a field for group nickname to pull plaza items specific to that group.
 
