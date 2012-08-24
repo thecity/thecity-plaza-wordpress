@@ -10,10 +10,9 @@
   } else {
 
     $the_city = new TheCity( $_GET['subdomain_key'] );  
-
+    $the_city->add_url_param('wp=1');
     if( isset($_GET['group_nickname']) ) { $the_city->set_group_nickname($_GET['group_nickname']); }
-
-    if( isset($_GET['wp']) ) { $the_city->add_url_param('wp=1'); }
+    
 
     $subdomain_key = $_GET['subdomain_key'];
     $plaza_choice = $_GET['plaza_display'];    
