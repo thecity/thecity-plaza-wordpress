@@ -9,6 +9,8 @@ Author URI: http://www.OnTheCity.org
 */
 
 include_once 'plaza_scripts.php';
+require_once 'lib/plaza-php/lib/the_city.php';
+require_once 'lib/plaza_wordpress_cache.php';
 
 
 class The_City_Plaza_Widget extends WP_Widget {
@@ -41,14 +43,13 @@ class The_City_Plaza_Widget extends WP_Widget {
     $show_type = strip_tags($instance['show_type']);
     $cache_duration = strip_tags($instance['cache_duration']);
 
-
     $clear_cache_msg = '';
     if (isset($_POST['clear_cache_now'])) {
-      if(clear_plaza_cache_directory()) {
-        $clear_cache_msg = 'Cache cleared';
-      } else {
-        $clear_cache_msg = 'Failed to clear cache';
-      }
+      global $wpdb;
+      $cacher = new PlazaWordPressCache( $subdomain_key );
+      $cacher->set_db_connection($wpdb);
+      $cacher->clear_cache();
+      $clear_cache_msg = 'Cache cleared';
     }
 
     ?>

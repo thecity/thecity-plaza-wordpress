@@ -62,11 +62,11 @@
      * @return mixed Returns true on success or a string error message on false.
      */
     public function save_data($key, $data, $expire_in = null) {
-      $this->expire_cache($key);
-      if( is_null($expire_in) ) { $expire_in = 30; } # 3600 seconds = 1 hour
+      $this->expire_cache($this->subdomain.'::'.$key);
+      if( is_null($expire_in) ) { $expire_in = 3600; } # 3600 seconds = 1 hour
       $expire_in += time();
       $t = date("Y-m-d H:i:s", $expire_in);
-      $this->db_conn->insert($this->table_name, array('cache_key' => $key, 'cache_value' => serialize($data), 'cache_expire_at' => $t));
+      $this->db_conn->insert($this->table_name, array('cache_key' => $this->subdomain.'::'.$key, 'cache_value' => serialize($data), 'cache_expire_at' => $t));
       return true;      
     } 
     
@@ -81,9 +81,9 @@
      */
     public function get_data($key) {         
       $t = date("Y-m-d H:i:s", time());
-      $result = $this->db_conn->get_results('SELECT cache_value FROM '.$this->table_name.' WHERE cache_key = "'.$key.'" AND cache_expire_at >= "'.$t.'"LIMIT 1');
+      $result = $this->db_conn->get_results('SELECT cache_value FROM '.$this->table_name.' WHERE cache_key = "'.$this->subdomain.'::'.$key.'" AND cache_expire_at >= "'.$t.'"LIMIT 1');
       if( empty($result) ) { 
-        $this->expire_cache($key); // Just make sure
+        $this->expire_cache($this->subdomain.'::'.$key); // Just make sure
         return null; 
       }
       return unserialize($result[0]->cache_value);
@@ -98,7 +98,7 @@
      * @throws Exception if unable to remove cache file.
      */
     public function expire_cache($key) {
-      $this->db_conn->get_results('DELETE FROM '.$this->table_name.' WHERE cache_key = "'.$key.'"');
+      $this->db_conn->get_results('DELETE FROM '.$this->table_name.' WHERE cache_key = "'.$this->subdomain.'::'.$key.'"');
     }
     
     
@@ -111,10 +111,20 @@
      */
     public function is_cache_expired($key) {
       $t = date("Y-m-d H:i:s", time());
-      $result = $this->db_conn->get_results('SELECT id FROM '.$this->table_name.' WHERE cache_key = "'.$key.'" AND cache_expire_at >= "'.$t.'"LIMIT 1');
+      $result = $this->db_conn->get_results('SELECT id FROM '.$this->table_name.' WHERE cache_key = "'.$this->subdomain.'::'.$key.'" AND cache_expire_at >= "'.$t.'"LIMIT 1');
       return empty($result);  
     }
     
+
+    /**
+     * Clears the cache.
+     *
+     * @return boolean If the cache clears successfully then true, otherwise false.
+     */
+    public function clear_cache() {
+      $this->db_conn->get_results('DELETE FROM '.$this->table_name);
+      return true; 
+    }    
 
     
   }

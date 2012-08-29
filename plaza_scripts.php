@@ -17,16 +17,6 @@ function plaza_wordpress_styles() {
 add_action('wp_enqueue_scripts', 'plaza_wordpress_styles');  
 
 
-function clear_plaza_cache_directory() {
-  $dir = plugin_dir_path(__FILE__) . 'lib/plaza-php/storage/'; // IMPORTANT: with '/' at the end
-  try {
-    delete_plaza_cache_directory($dir);
-    return true;
-  } catch(Exception $e) {
-    return false;
-  }
-}
-
 
 function file_get_plaza_contents_with_curl($url) {
   $ch = curl_init();
