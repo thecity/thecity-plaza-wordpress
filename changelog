@@ -1,3 +1,6 @@
+0.8.0
+* Updating caching to use the database instead of the file system.
+
 0.7.1
 * Fixed how cache key was generated.
 * Updated how the URL was generated for pulling plaza data.
