@@ -1,7 +1,9 @@
 <?php
 
+  require_once '../../../wp-blog-header.php';
   require_once 'lib/plaza-php/lib/the_city.php';
   require_once 'lib/plaza_collection.php';
+  require_once 'lib/plaza_wordpress_cache.php';
   
   if( empty( $_GET['subdomain_key'] ) ) {
     echo 'Subdomain not set';
@@ -9,7 +11,11 @@
     
   } else {
 
-    $the_city = new TheCity( $_GET['subdomain_key'] );  
+    global $wpdb;
+    $cacher = new PlazaWordPressCache( $_GET['subdomain_key'] );
+    $cacher->set_db_connection($wpdb);
+
+    $the_city = new TheCity( $_GET['subdomain_key'], true, $cacher);  
     $the_city->add_url_params('wp=1');
     if( isset($_GET['group_nickname']) ) { $the_city->set_group_nickname($_GET['group_nickname']); }
     

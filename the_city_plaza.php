@@ -263,4 +263,42 @@ class The_City_Plaza_Widget extends WP_Widget {
 
 add_action('widgets_init', create_function('', 'return register_widget("The_City_Plaza_Widget");'));
 
+
+
+require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+global $the_city_cache_table_version;
+$the_city_cache_table_version = "1.0";
+
+function thecity_cache_table_create() {
+  global $the_city_cache_table_version;
+  global $wpdb;
+  $table_name = $wpdb->prefix . "thecity_json_cache";
+
+  if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+    $sql = "CREATE TABLE $table_name (
+            id mediumint(9) NOT NULL AUTO_INCREMENT,
+            cache_key VARCHAR(255) NOT NULL,
+            cache_value mediumtext NOT NULL,
+            cache_expire_at TIMESTAMP NOT NULL,
+            UNIQUE KEY id (id)
+            );";
+    dbDelta($sql);
+  } else {
+    // upgrade table
+  }
+
+  add_option("the_city_cache_table_version", $the_city_cache_table_version);
+}
+
+
+function thecity_cache_table_destroy() {
+  global $wpdb;
+  $table_name = $wpdb->prefix . "thecity_json_cache";
+  $sql = "DROP TABLE IF EXISTS $table_name";
+  $wpdb->query($sql); 
+}
+
+register_activation_hook(__FILE__, 'thecity_cache_table_create');
+register_deactivation_hook(__FILE__ , 'thecity_cache_table_destroy');
+
 ?>
