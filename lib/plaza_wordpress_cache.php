@@ -10,7 +10,10 @@
    */
 
 
-  
+
+define("THE_CITY_PLAZA_CACHE_TABLE_VERSION", 1);
+define("THE_CITY_PLAZA_CACHE_TABLE_OPTION_KEY", 'the_city_plaza_key');
+
 
   /** 
    * This class caches the data in a mysql database.
@@ -49,7 +52,54 @@
     public function set_db_connection($conn) {
       $this->db_conn = $conn;
       $this->table_name = $conn->prefix . 'thecity_json_cache';
+      $this->create_the_city_cache_table_unless_exists();
     }
+
+
+    /** 
+     * Checks if the cache table exists and if not creates it.
+     */
+    public function create_the_city_cache_table_unless_exists() {      
+
+      $build_table = false;
+      if($this->db_conn->get_var("SHOW TABLES LIKE '".$this->table_name."'") != $this->table_name) {
+        $build_table = true;
+      } else {        
+        $result = $this->db_conn->get_results('SELECT cache_value FROM '.$this->table_name.' WHERE cache_key = "'.THE_CITY_PLAZA_CACHE_TABLE_OPTION_KEY.'" LIMIT 1'); 
+        $key = 0;
+        if(!empty($result)) { $key = $result[0]->cache_value; } 
+        if($key != THE_CITY_PLAZA_CACHE_TABLE_VERSION) {
+          $build_table = true;
+        }
+      }
+
+      if($build_table) {
+        $sql = "DROP TABLE IF EXISTS ".$this->table_name;
+        $this->db_conn->query($sql);
+
+        $charset_collate = '';
+        if(!empty($this->db_conn->charset)) {
+            $charset_collate = "DEFAULT CHARACTER SET ".$this->db_conn->charset;
+        }
+        
+        if(!empty($this->db_conn->collate)) {
+            $charset_collate .= " COLLATE ".$this->db_conn->collate;
+        }
+
+        $sql = "CREATE TABLE IF NOT EXISTS ".$this->table_name." (
+                id mediumint(9) NOT NULL AUTO_INCREMENT,
+                cache_key VARCHAR(255) NOT NULL,
+                cache_value mediumtext NOT NULL,
+                cache_expire_at TIMESTAMP NOT NULL,
+                UNIQUE KEY id (id)
+                ) ".$charset_collate.";";
+        $this->db_conn->query($sql);
+
+        $this->db_conn->insert($this->table_name, array('cache_key' => THE_CITY_PLAZA_CACHE_TABLE_OPTION_KEY, 
+                                                        'cache_value' => THE_CITY_PLAZA_CACHE_TABLE_VERSION, 
+                                                        'cache_expire_at' => '0000-00-00 00:00:00'));
+      }
+    }  
 
     
     /**
@@ -122,7 +172,7 @@
      * @return boolean If the cache clears successfully then true, otherwise false.
      */
     public function clear_cache() {
-      $this->db_conn->get_results('DELETE FROM '.$this->table_name);
+      $this->db_conn->get_results('DELETE FROM '.$this->table_name.' WHERE cache_key != "'.THE_CITY_PLAZA_CACHE_TABLE_OPTION_KEY.'"');
       return true; 
     }    
 
