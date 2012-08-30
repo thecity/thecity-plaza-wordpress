@@ -1,3 +1,6 @@
+0.8.1
+* Changed where and when the cache table is created/rebuilt.  Now caching to the database really works.
+
 0.8.0
 * Updating caching to use the database instead of the file system.
 
