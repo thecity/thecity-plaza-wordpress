@@ -11,6 +11,8 @@ task :package do
     'rm -f ./the-city-plaza/notes.txt',
   
     'rm -rf ./the-city-plaza/lib/plaza-php/.git',
+    'rm -f ./the-city-plaza/lib/plaza-php/.gitignore',
+    'rm -rf ./the-city-plaza/lib/plaza-php/storage',
     'rm -rf ./the-city-plaza/lib/plaza-php/test',
     'rm -rf ./the-city-plaza/lib/plaza-php/build_docs',
     'rm -rf ./the-city-plaza/lib/plaza-php/etc',
@@ -38,6 +40,8 @@ task :package_to_path, :path do |t, args|
     'rm -f ./the-city-plaza/notes.txt',
 
     'rm -rf ./the-city-plaza/lib/plaza-php/.git',
+    'rm -f ./the-city-plaza/lib/plaza-php/.gitignore',
+    'rm -rf ./the-city-plaza/lib/plaza-php/storage',
     'rm -rf ./the-city-plaza/lib/plaza-php/test',
     'rm -rf ./the-city-plaza/lib/plaza-php/build_docs',
     'rm -rf ./the-city-plaza/lib/plaza-php/etc',
