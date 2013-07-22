@@ -13,7 +13,7 @@
 
     $url = site_url() . '/wp-content/plugins/the-city-plaza/load_data.php?'.implode('&', $otc_params); 
 
-    if( ini_get('allow_url_fopen') ) { 
+    if( ini_get('allow_url_fopen') == 1 ) { // On
       echo file_get_contents($url);
     } else if( function_exists('curl_version') ) {
       echo file_get_plaza_contents_with_curl($url);
