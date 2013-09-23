@@ -73,6 +73,8 @@ None yet...
 == Changelog ==
 
 = 0.8.3 =
+* Changed the order of priority for curl and fopen.  Priority is now given to curl.
+* Updated the PlazaPHP lib to the latest.
 
 = 0.8.2 =
 * Updated the check for allow_url_fopen.
