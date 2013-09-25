@@ -1,1 +1,1 @@
-svn copy http://plugins.svn.wordpress.org/the-city-plaza/trunk/ http://plugins.svn.wordpress.org/the-city-plaza/tags/release-0.8.3 -m "Release 0.8.3"
+svn copy http://plugins.svn.wordpress.org/the-city-plaza/trunk/ http://plugins.svn.wordpress.org/the-city-plaza/tags/release-0.8.4 -m "Release 0.8.4"
