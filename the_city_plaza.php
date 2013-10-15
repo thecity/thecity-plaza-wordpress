@@ -25,6 +25,7 @@ class The_City_Plaza_Widget extends WP_Widget {
   function form($instance) {
     /* Set up some default widget settings. */
 		$defaults = array( 'subdomain_key' => '', 
+                       'title_link' => '0',
                        'group_nickname' => '',
                        'plaza_display' => 'prayers', 
                        'items_to_display' => '10',
@@ -36,6 +37,7 @@ class The_City_Plaza_Widget extends WP_Widget {
 
     $title = strip_tags($instance['title']);
     $subdomain_key = strip_tags($instance['subdomain_key']);
+    $title_link = strip_tags($instance['title_link']);
     $group_nickname = strip_tags($instance['group_nickname']);
     $plaza_display = strip_tags($instance['plaza_display']);
     $items_to_display = strip_tags($instance['items_to_display']);
@@ -64,10 +66,22 @@ class The_City_Plaza_Widget extends WP_Widget {
                value="<?php echo attribute_escape($title); ?>" />
        </label>
        <i>The title to display at the top of the widget</i>
+
+      <br>
+
+      <?php
+        $title_link_checked = empty($title_link) ? '' : 'checked="checked"';
+      ?>
+      <label for="<?php echo $this->get_field_id('title_link'); ?>">
+        <input type="checkbox" 
+               id="<?php echo $this->get_field_id('title_link'); ?>" 
+               name="<?php echo $this->get_field_name('title_link'); ?>"
+               <?php echo $title_link_checked ?> /> Title links to main plaza page      
+      </label>         
     </p>
 
 
-   <p>
+    <p>
      <label for="<?php echo $this->get_field_id('subdomain_key'); ?>">
        Subdomain: 
        <input class="widefat" 
