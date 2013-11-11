@@ -22,7 +22,7 @@ Install manually:
 
 1. Unzip the file you downloaded.
 2. Upload files to a 'the-city-plaza' folder in the '/wp-content/plugins/' directory.
-3. Log into your Wordpress admin and activate the plugin through the 'Plugins' menu.
+3. Log into your WordPress admin and activate the plugin through the 'Plugins' menu.
 4. In the widgets screen drag the widget to the content section you want it to show up in.
 5. Set the fields as shown and then save.
 
