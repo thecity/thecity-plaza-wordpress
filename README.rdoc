@@ -31,7 +31,7 @@ Install manually:
 == Screenshots
 
 Here is the link to the description of the plugin:
-http://developer.onthecity.org/thecity-plugins/wordpress/
+http://developer.onthecity.org/thecity-plugins/wordpress-plaza/
 
 
 
@@ -44,7 +44,7 @@ https://github.com/thecity/thecity-plaza-php
 
 == TheCity API docs
 
-http://thecity.zendesk.com/entries/359458-using-the-plaza-json-api
+http://wiki.acstechnologies.com/display/TheCity/The+Plaza+JSON+API
 
 
 
