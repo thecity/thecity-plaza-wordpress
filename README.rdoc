@@ -41,6 +41,10 @@ This project uses the Plaza API wrapper
 https://github.com/thecity/thecity-plaza-php
 
 
+If you clone this repo then make sure to do the following afterward:
+  git submodule init
+  git submodule update
+
 
 == TheCity API docs
 
