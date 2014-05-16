@@ -4,7 +4,7 @@ Plugin Name: The City Plaza Widget
 Plugin URI: http://developer.onthecity.org/thecity-plugins/wordpress/
 Description: This widget allows you to pull your OnTheCity.org plaza information into your WordPress website.
 Author: Wes Hays
-Version: 0.8.4
+Version: 0.8.5
 Author URI: http://www.OnTheCity.org
 */
 
@@ -25,7 +25,7 @@ class The_City_Plaza_Widget extends WP_Widget {
   function form($instance) {
     /* Set up some default widget settings. */
 		$defaults = array( 'subdomain_key' => '', 
-                       'title_link' => '0',
+                       'title_link' => '1',
                        'group_nickname' => '',
                        'plaza_display' => 'prayers', 
                        'items_to_display' => '10',
@@ -240,6 +240,7 @@ class The_City_Plaza_Widget extends WP_Widget {
     $nickname = trim($nickname);
 
     $instance['title'] = strip_tags($new_instance['title']);
+    $instance['title_link'] = strip_tags($new_instance['title_link']);
     $instance['subdomain_key'] = strip_tags($new_instance['subdomain_key']);
     $instance['group_nickname'] = $nickname;
     $instance['plaza_display'] = strip_tags($new_instance['plaza_display']);
@@ -256,6 +257,7 @@ class The_City_Plaza_Widget extends WP_Widget {
     extract($args);
 
     $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
+    $title_link = empty($instance['title_link']) ? '' : $instance['title_link'];
     $subdomain_key = empty($instance['subdomain_key']) ? ' ' : $instance['subdomain_key'];
     $group_nickname = empty($instance['group_nickname']) ? '' : $instance['group_nickname'];
     $plaza_display = empty($instance['plaza_display']) ? ' ' : $instance['plaza_display'];
@@ -266,7 +268,11 @@ class The_City_Plaza_Widget extends WP_Widget {
 
     echo $before_widget;
     if (!empty( $title )) {
-        echo $before_title . $title . $after_title;
+      $display_title = $title;
+      if(!empty($title_link)) {
+        $display_title = '<a href="http://'.$subdomain_key.'.onthecity.org/plaza" target="_blank">'.$title.'</a>';
+      }
+      echo $before_title . $display_title . $after_title;
     };
 
     include dirname(__FILE__).'/widget_info.php';

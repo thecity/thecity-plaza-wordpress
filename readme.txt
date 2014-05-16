@@ -3,7 +3,7 @@ Contributors: weshays
 Tags: city, thecity, onthecity, plaza, acs
 Requires at least: 2.8
 Tested up to: 3.1
-Stable tag: 0.8.4
+Stable tag: 0.8.5
 
 Pull church needs, topics, events, prayers and albums from the Plaza so that you can use them within your WordPress site.
 
@@ -71,6 +71,9 @@ None yet...
 
 
 == Changelog ==
+
+= 0.8.5 =
+* Added option to make the widget title link back to the Plaza.
 
 = 0.8.4 =
 * Missed changing the order of priority for curl and fopen for the plugin. 0.8.3 only updated the thecity-plaza-php library.
