@@ -70,7 +70,7 @@
         }
 
 
-        $plaza_link_base = 'http://'.$_GET['subdomain_key'].'.onthecity.org/plaza/'.$item_type_path.'/'; 
+        $plaza_link_base = 'https://'.$_GET['subdomain_key'].'.onthecity.org/plaza/'.$item_type_path.'/'; 
         $plaza_link = $plaza_link_base . $item->id();   
         $item_date = '';
 
