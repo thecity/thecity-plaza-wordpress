@@ -72,6 +72,9 @@ None yet...
 
 == Changelog ==
 
+= 0.8.6 =
+* Ensure SSL on connection to The City.
+
 = 0.8.5 =
 * Added option to make the widget title link back to the Plaza.
 
